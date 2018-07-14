@@ -2,7 +2,11 @@ package myDriver;
 
 import config.ChromeConfig;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CustomDriver {
     private WebDriver driver;
@@ -44,7 +48,47 @@ public class CustomDriver {
         }
     }
 
+    public void sendKey(By locator, Keys key) throws RuntimeException{
+        try{
+            driver.findElement(locator).sendKeys(key);
+        }
+        catch (Exception ex){
+            throw ex;
+        }
+    }
+
     public void quit(){
         driver.quit();
     }
+
+    public boolean isElementDisplayed(By locator) throws RuntimeException{
+        try{
+            return driver.findElement(locator).isDisplayed();
+        }
+        catch(Exception ex){
+            throw ex;
+        }
+    }
+
+    public void waitForElementIsVisible(By locator, int timeOutInSeconds) throws RuntimeException{
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+            wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
+        }
+        catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    public boolean elementContainsText(By locator, String text) throws RuntimeException{
+        try{
+            WebElement element = driver.findElement(locator);
+            return element.getText().equalsIgnoreCase(text);
+        }
+        catch(Exception ex){
+            throw ex;
+        }
+    }
+
+
 }
