@@ -6,16 +6,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import pageElements.FlightsPage;
-import pageElements.HomePage;
+import pageObjects.FlightsPage;
+import pageObjects.HomePage;
 import util.UtilDate;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class HomePageTest {
 
@@ -25,8 +20,10 @@ public class HomePageTest {
     @BeforeEach
     public void BeforeEach()
     {
-        customDriver = new CustomDriver();
-        commonFunctions = new CommonFunctions(customDriver, "https://www.phptravels.net");
+        String driverType = System.getProperty("driverType");
+        customDriver = new CustomDriver(driverType);
+        commonFunctions = new CommonFunctions(customDriver);
+        customDriver.launchApplication("https://www.phptravels.net");
     }
 
     @AfterEach
@@ -35,19 +32,21 @@ public class HomePageTest {
         customDriver.quit();
     }
 
-    @Test
+    //@Test
     public void TestHomePage()
     {
         try{
+
             boolean sectionIsPresent = customDriver.isElementDisplayed(HomePage.promotion_Section);
             Assertions.assertTrue(sectionIsPresent);
         }
         catch (Exception ex){
+            ex.printStackTrace();
             Assertions.fail("Fallo", ex);
         }
     }
 
-    @Test
+    //@Test
     public void SearchFlightsRoundTrip(){
         try{
             //Change to Flights search
@@ -79,6 +78,7 @@ public class HomePageTest {
             Assertions.assertTrue(customDriver.elementContainsText(FlightsPage.flights_datesAvailability_Div, "Dates Availability"));
         }
         catch (Exception ex){
+            ex.printStackTrace();
             Assertions.fail("Fallo", ex);
         }
     }

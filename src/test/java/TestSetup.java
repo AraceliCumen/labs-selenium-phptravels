@@ -7,7 +7,7 @@ public class TestSetup {
         Assertions.assertTrue(true);
     }
 
-    @Test void seleniumWorking(){
+    /*@Test void seleniumWorking(){
 
-    }
+    }*/
 }

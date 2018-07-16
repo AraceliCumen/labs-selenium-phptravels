@@ -1,7 +1,8 @@
-package pageElements;
+package pageObjects;
 
 import org.openqa.selenium.By;
 
+//PageObject pattern
 public class HomePage {
     public static By search_Panel=By.xpath("//*[@id='body-section']/section/div[2]/div/div[2]");
     public static By promotion_Section=By.xpath("//*[@id='body-section']/section");
