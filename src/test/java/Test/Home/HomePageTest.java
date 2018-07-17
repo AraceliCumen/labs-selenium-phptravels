@@ -23,6 +23,7 @@ public class HomePageTest {
         String driverType = System.getProperty("driverType");
         customDriver = new CustomDriver(driverType);
         commonFunctions = new CommonFunctions(customDriver);
+        //Tambien hay otra página de pruebas https://phptravels.com
         customDriver.launchApplication("https://www.phptravels.net");
     }
 
@@ -32,7 +33,7 @@ public class HomePageTest {
         customDriver.quit();
     }
 
-    //@Test
+    @Test
     public void TestHomePage()
     {
         try{
@@ -46,7 +47,7 @@ public class HomePageTest {
         }
     }
 
-    //@Test
+    @Test
     public void SearchFlightsRoundTrip(){
         try{
             //Change to Flights search
