@@ -1,6 +1,7 @@
 package myDriver;
 
 import config.ChromeConfig;
+import config.FirefoxConfig;
 import config.HeadlessConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -21,6 +22,9 @@ public class CustomDriver {
                     break;
                 case "Headless":
                     driver = new HeadlessConfig().driver;
+                    break;
+                case "Firefox":
+                    driver = new FirefoxConfig().driver;
                     break;
             }
         }
